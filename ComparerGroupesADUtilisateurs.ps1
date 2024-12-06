@@ -14,13 +14,13 @@ function Compare-ADUserGroups {
     # Get second user groups
     $user2Groups = Get-ADUser -Identity $User2 -Properties MemberOf | Select-Object -ExpandProperty MemberOf
 
-    # Find common groups
+    # Find groups in common
     $commonGroups = $user1Groups | Where-Object { $user2Groups -contains $_ }
 
     # Find User 1 specific groups
     $user1SpecificGroups = $user1Groups | Where-Object { $user2Groups -notcontains $_ }
 
-    # Find User 2 specific gruops 
+    # Find User 2 specific groups 
     $user2SpecificGroups = $user2Groups | Where-Object { $user1Groups -notcontains $_ }
 
     # Display results
